@@ -1,0 +1,7 @@
+node_modules/
+recordings/
+.DS_Store
+*.log
+.env
+.firebase/
+firebase-debug.log

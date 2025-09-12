@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "server.js",
+      "package*.json",
+      "recordings/**",
+      "README.md",
+      "PRD.md",
+      "file-tree.md"
+    ],
+    "rewrites": []
+  }
+}

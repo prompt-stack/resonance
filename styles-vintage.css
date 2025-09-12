@@ -1,0 +1,601 @@
+/* Resonance - Vintage Black & White Aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Special+Elite&family=Bebas+Neue&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier Prime', 'American Typewriter', 'Courier New', monospace;
+    height: 100vh;
+    overflow: hidden;
+    background: #F5F5F0; /* Off-white, aged paper */
+    color: #1A1A1A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px 0 20px;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+/* Vintage texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.03;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,.1) 2px,
+            rgba(0,0,0,.1) 4px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Recording mode - darker vintage */
+body.recording-mode {
+    background: #E8E8E0;
+}
+
+/* Old-school recording indicator */
+.recording-indicator {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    display: none;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 25px;
+    background: #1A1A1A;
+    border: 3px solid #1A1A1A;
+    border-radius: 0; /* Sharp corners for vintage feel */
+    z-index: 100;
+    font-family: 'Special Elite', typewriter;
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.2);
+}
+
+.recording-indicator.active {
+    display: flex;
+}
+
+.recording-dot {
+    width: 12px;
+    height: 12px;
+    background: #FF0000;
+    border-radius: 50%;
+    animation: oldSchoolBlink 1s step-end infinite;
+}
+
+@keyframes oldSchoolBlink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.recording-text {
+    color: #F5F5F0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+}
+
+.timer-display {
+    font-family: 'Courier Prime', monospace;
+    font-size: 1rem;
+    color: #F5F5F0;
+    font-weight: 700;
+    min-width: 80px;
+}
+
+/* Encouragement removed - too distracting */
+
+/* Header with vintage typography */
+.header {
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 40px;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+}
+
+body.recording-mode .header {
+    opacity: 0.3;
+}
+
+.header h1 {
+    font-family: 'Bebas Neue', 'Impact', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #1A1A1A;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+.tagline {
+    font-size: 1rem;
+    color: #4A4A4A;
+    font-style: italic;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-family: 'Courier Prime', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* Context box with vintage border */
+.context {
+    background: white;
+    border: 3px solid #1A1A1A;
+    padding: 25px;
+    margin-bottom: 40px;
+    max-width: 650px;
+    position: relative;
+    z-index: 10;
+    transition: all 0.5s ease;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+}
+
+/* Corner decorations */
+.context::before,
+.context::after {
+    content: '★';
+    position: absolute;
+    font-size: 1.5rem;
+    color: #1A1A1A;
+}
+
+.context::before {
+    top: -15px;
+    left: -15px;
+}
+
+.context::after {
+    bottom: -15px;
+    right: -15px;
+}
+
+/* During recording - dim but don't hide context */
+body.recording-mode .context {
+    opacity: 0.6;
+    transform: scale(0.95);
+}
+
+body.recording-mode .context h2 {
+    opacity: 0.4;
+}
+
+/* Highlight key phrases during recording */
+.highlight-phrase {
+    transition: all 0.5s ease;
+}
+
+.highlight-topic {
+    transition: all 0.5s ease;
+}
+
+body.recording-mode .highlight-phrase {
+    color: #1A1A1A;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 0, 0.3);
+    padding: 2px 4px;
+}
+
+body.recording-mode .highlight-topic {
+    color: #8B0000;
+    font-weight: 700;
+    border-bottom: 2px solid #8B0000;
+}
+
+.context h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #1A1A1A;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: 3px solid #1A1A1A;
+    padding-bottom: 10px;
+}
+
+.context p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #2A2A2A;
+    font-family: 'Courier Prime', monospace;
+    margin-bottom: 15px;
+}
+
+.reimagine-prompt {
+    font-style: italic;
+    border-top: 2px solid #1A1A1A;
+    padding-top: 15px;
+    margin-top: 15px;
+    color: #4A4A4A;
+}
+
+body.recording-mode .reimagine-prompt {
+    color: #1A1A1A;
+    font-weight: 600;
+}
+
+/* Example Report Link */
+.report-link-container {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed #1A1A1A;
+    text-align: center;
+}
+
+.example-report-link {
+    display: inline-block;
+    color: #8B0000;
+    text-decoration: none;
+    font-family: 'Special Elite', typewriter;
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    border: 2px solid #8B0000;
+    background: rgba(139, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.example-report-link:hover {
+    background: #8B0000;
+    color: #F5F5F0;
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+}
+
+body.recording-mode .report-link-container {
+    opacity: 0.3;
+}
+
+.instruction {
+    font-family: 'Special Elite', typewriter;
+    font-size: 1.3rem;
+    color: #3A3A3A;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    z-index: 10;
+    transition: opacity 0.5s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+body.recording-mode .instruction {
+    opacity: 0;
+}
+
+/* Mic Container - Fixed to bottom */
+.mic-container {
+    position: fixed;
+    bottom: -50px; /* Shows more of the pole/stand */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+/* Microphone Button with vintage feel */
+.mic-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.mic-button::before {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border: 2px dashed #1A1A1A;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mic-button:hover::before {
+    opacity: 0.3;
+}
+
+.mic-button:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.mic-button:active {
+    transform: scale(0.98);
+}
+
+/* Microphone Image - Much bigger */
+.mic-image {
+    width: 500px;
+    height: auto;
+    object-fit: contain;
+    object-position: bottom;
+    filter: contrast(1.2) brightness(0.95);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Recording state - vintage red tint */
+.mic-button.recording .mic-image {
+    filter: contrast(1.3) brightness(0.9) sepia(1) hue-rotate(320deg) saturate(2);
+    animation: vintageGlow 2s ease-in-out infinite;
+}
+
+@keyframes vintageGlow {
+    0%, 100% { 
+        transform: scale(1);
+        filter: contrast(1.3) brightness(0.9) sepia(1) hue-rotate(320deg) saturate(2);
+    }
+    50% { 
+        transform: scale(1.02);
+        filter: contrast(1.4) brightness(1) sepia(1) hue-rotate(320deg) saturate(2.5);
+    }
+}
+
+/* Status messages with vintage style */
+.status {
+    position: fixed;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: 40px;
+    font-size: 1.2rem;
+    text-align: center;
+    z-index: 30;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    font-family: 'Special Elite', typewriter;
+}
+
+.status.active {
+    opacity: 1;
+}
+
+.thank-you-message {
+    background: #F5F5F0;
+    padding: 30px 40px;
+    border: 3px solid #1A1A1A;
+    display: inline-block;
+    max-width: 600px;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+    animation: stampIn 0.5s ease;
+    text-align: left;
+}
+
+.thank-you-message h3 {
+    color: #1A1A1A;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.thank-you-message p {
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #2A2A2A;
+    margin-bottom: 15px;
+}
+
+.thank-you-message .next-steps {
+    border-top: 2px solid #1A1A1A;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.thank-you-message .repository-note {
+    font-style: italic;
+    font-size: 0.8rem;
+    color: #4A4A4A;
+    margin-bottom: 0;
+}
+
+@keyframes stampIn {
+    from { 
+        opacity: 0;
+        transform: scale(1.5) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.error {
+    color: #8B0000;
+    background: #F5F5F0;
+    padding: 20px 30px;
+    border: 3px solid #8B0000;
+    display: inline-block;
+    box-shadow: 8px 8px 0px rgba(139,0,0,0.2);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px 0 15px;
+    }
+    
+    .header h1 {
+        font-size: 3rem;
+        letter-spacing: 0.1em;
+    }
+    
+    .tagline {
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+    
+    .context {
+        padding: 20px;
+        margin: 0 10px 30px 10px;
+        max-width: 100%;
+        box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+    }
+    
+    .context h2 {
+        font-size: 1.3rem;
+    }
+    
+    .context p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .instruction {
+        font-size: 1.1rem;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 0 20px;
+    }
+    
+    .mic-image {
+        width: 350px;
+    }
+    
+    .mic-container {
+        bottom: 20px;  /* Raised up to show more stem */
+    }
+    
+    .recording-indicator {
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+    
+    .status {
+        bottom: 80px;
+    }
+    
+    .thank-you-message {
+        padding: 20px;
+        margin: 0 10px;
+        max-width: calc(100vw - 40px);
+    }
+    
+    .thank-you-message h3 {
+        font-size: 1.3rem;
+    }
+    
+    .thank-you-message p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    
+    .tagline {
+        font-size: 0.85rem;
+    }
+    
+    .context {
+        padding: 15px;
+        margin: 0 5px 25px 5px;
+    }
+    
+    .context h2 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .context p {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+    }
+    
+    .example-report-link {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+    }
+    
+    .instruction {
+        font-size: 1rem;
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+    
+    .mic-image {
+        width: 280px;
+    }
+    
+    .mic-container {
+        bottom: 40px;  /* Raised higher on small phones */
+    }
+    
+    .recording-indicator {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+        gap: 10px;
+    }
+    
+    .recording-text {
+        font-size: 0.7rem;
+    }
+    
+    .timer-display {
+        font-size: 0.85rem;
+        min-width: 60px;
+    }
+    
+    .thank-you-message {
+        padding: 15px;
+    }
+    
+    .thank-you-message h3 {
+        font-size: 1.2rem;
+    }
+    
+    .thank-you-message p {
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+}
+
+/* Very Small Mobile (iPhone SE, etc) */
+@media (max-width: 375px) {
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .mic-image {
+        width: 250px;
+    }
+    
+    .mic-container {
+        bottom: 50px;  /* Even higher for very small screens */
+    }
+    
+    body.recording-mode .highlight-phrase {
+        font-size: 1rem;
+    }
+}

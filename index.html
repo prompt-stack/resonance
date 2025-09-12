@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resonance - Community Voice Platform. Share your perspective on our community's future.">
+    <title>Resonance - Community Voice Platform</title>
+    <link rel="stylesheet" href="styles-vintage.css">
+</head>
+<body>
+    <!-- Recording Studio Indicator -->
+    <div class="recording-indicator" id="recordingIndicator">
+        <div class="recording-dot"></div>
+        <span class="recording-text">RECORDING</span>
+        <span class="timer-display" id="timerDisplay">0:00</span>
+    </div>
+    
+    <!-- Encouragement Messages -->
+    <div class="encouragement" id="encouragement"></div>
+    
+    <div class="header">
+        <h1>Resonance</h1>
+        <p class="tagline">Every Voice Matters. Every Perspective Counts.</p>
+    </div>
+    
+    <div class="context" id="contextBox">
+        <h2>Community Development Forum</h2>
+        <p>
+            <span class="highlight-phrase">Reimagine our community's future.</span> 
+            Share your vision for <span class="highlight-topic">economic growth</span>, 
+            <span class="highlight-topic">repurposing existing spaces</span>, 
+            <span class="highlight-topic">projects needing momentum</span>, and 
+            <span class="highlight-topic">quality of life improvements</span>.
+        </p>
+        <p class="reimagine-prompt">
+            If you could reimagine our community: What would thrive? 
+            What businesses would flourish? What events would bring us together? 
+            Paint us your vision.
+        </p>
+        <p class="report-link-container">
+            <a href="community-vision-report.html" target="_blank" class="example-report-link">
+                View Example Community Vision Report →
+            </a>
+        </p>
+    </div>
+    
+    <p class="instruction">Step up to the microphone and press to begin</p>
+    
+    <!-- Microphone Button -->
+    <div class="mic-container">
+        <button class="mic-button" id="micButton" aria-label="Press to record">
+            <img src="images/sketch-mic.png" alt="Vintage Microphone" class="mic-image" />
+        </button>
+    </div>
+    
+    <div class="status" id="status"></div>
+    
+    <!-- JavaScript Module -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
