@@ -40,6 +40,10 @@ let startTime = null;
 let timerInterval = null;
 let encouragementInterval = null;
 
+// Recording limits
+const MAX_RECORDING_SECONDS = 300; // 5 minutes max
+const WARNING_SECONDS = 240; // Warning at 4 minutes
+
 // Community development questions that rotate during recording
 const encouragements = [
     "What makes our community unique?",
@@ -158,6 +162,30 @@ function updateTimer() {
     const minutes = Math.floor(elapsed / 60);
     const seconds = elapsed % 60;
     timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+    
+    // Show warning when approaching limit
+    if (elapsed === WARNING_SECONDS) {
+        status.innerHTML = '<span class="warning">1 minute remaining</span>';
+        status.classList.add('active');
+        setTimeout(() => {
+            if (isRecording) {
+                status.classList.remove('active');
+                status.textContent = '';
+            }
+        }, 3000);
+    }
+    
+    // Auto-stop at max length
+    if (elapsed >= MAX_RECORDING_SECONDS) {
+        console.log('Maximum recording length reached');
+        stopRecording();
+        status.innerHTML = '<span class="info">Maximum recording length reached (5 minutes)</span>';
+        status.classList.add('active');
+        setTimeout(() => {
+            status.classList.remove('active');
+            status.textContent = '';
+        }, 5000);
+    }
 }
 
 function showEncouragement() {

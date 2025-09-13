@@ -458,6 +458,24 @@ body.recording-mode .instruction {
     box-shadow: 8px 8px 0px rgba(139,0,0,0.2);
 }
 
+.warning {
+    color: #B8860B;
+    background: #F5F5F0;
+    padding: 20px 30px;
+    border: 3px solid #B8860B;
+    display: inline-block;
+    box-shadow: 8px 8px 0px rgba(184,134,11,0.2);
+}
+
+.info {
+    color: #1A1A1A;
+    background: #F5F5F0;
+    padding: 20px 30px;
+    border: 3px solid #1A1A1A;
+    display: inline-block;
+    box-shadow: 8px 8px 0px rgba(26,26,26,0.2);
+}
+
 /* Mobile Responsive - Fixed for iPhone */
 @media screen and (max-width: 768px) {
     body {
