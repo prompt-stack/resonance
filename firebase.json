@@ -10,8 +10,14 @@
       "recordings/**",
       "README.md",
       "PRD.md",
-      "file-tree.md"
+      "file-tree.md",
+      "storage.rules",
+      "SETUP_FIREBASE.md",
+      "deploy.sh"
     ],
     "rewrites": []
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

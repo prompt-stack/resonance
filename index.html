@@ -3,59 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Resonance - Community Voice Platform. Share your perspective on our community's future.">
     <title>Resonance - Community Voice Platform</title>
-    <link rel="stylesheet" href="styles-vintage.css">
+    <meta name="description" content="Give your community a voice. Resonance is a simple platform for collecting authentic community feedback through voice recordings.">
+    <link rel="stylesheet" href="css/main.css?v=3">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow-x: hidden;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #F5F5F0;
+            border-bottom: 3px solid #1A1A1A;
+            padding: 20px 40px;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1A1A1A;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #1A1A1A;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 40px;
+            text-align: center;
+            background: white;
+            border-bottom: 3px solid #1A1A1A;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 5rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 0.9;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #4A4A4A;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: #1A1A1A;
+            color: #F5F5F0;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 3px solid #1A1A1A;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #1A1A1A;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #1A1A1A;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 3px solid #1A1A1A;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: #1A1A1A;
+            color: white;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 80px 40px;
+            background: #F5F5F0;
+            text-align: center;
+        }
+        
+        .how-it-works h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step-card {
+            background: white;
+            border: 3px solid #1A1A1A;
+            padding: 40px 30px;
+            position: relative;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            background: #1A1A1A;
+            color: #F5F5F0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .step-card p {
+            color: #4A4A4A;
+            line-height: 1.5;
+        }
+        
+        /* For Organizations */
+        .for-orgs {
+            padding: 80px 40px;
+            background: white;
+            border-top: 3px solid #1A1A1A;
+            border-bottom: 3px solid #1A1A1A;
+        }
+        
+        .for-orgs-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .for-orgs-text h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+        
+        .for-orgs-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4A4A4A;
+            margin-bottom: 30px;
+        }
+        
+        .org-benefits {
+            background: #F5F5F0;
+            border: 2px solid #1A1A1A;
+            padding: 30px;
+        }
+        
+        .org-benefits h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .org-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .org-benefits li {
+            padding: 10px 0;
+            border-bottom: 1px solid #D0D0D0;
+        }
+        
+        .org-benefits li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Examples Section */
+        .examples {
+            padding: 80px 40px;
+            background: #F5F5F0;
+            text-align: center;
+        }
+        
+        .examples h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+        
+        .example-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .example-card {
+            background: white;
+            border: 2px solid #1A1A1A;
+            padding: 30px;
+            text-decoration: none;
+            color: #1A1A1A;
+            transition: all 0.2s;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+        }
+        
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
+        }
+        
+        .example-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .example-card p {
+            color: #4A4A4A;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1A1A1A;
+            color: #F5F5F0;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        footer h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+        }
+        
+        footer .btn-primary {
+            background: #F5F5F0;
+            color: #1A1A1A;
+        }
+        
+        footer .btn-primary:hover {
+            box-shadow: 0 5px 0 #F5F5F0;
+        }
+        
+        .footer-links {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #444;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #F5F5F0;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero {
+                margin-top: 120px;
+                padding: 60px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .for-orgs-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid,
+            .example-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Recording Studio Indicator -->
-    <div class="recording-indicator" id="recordingIndicator">
-        <div class="recording-dot"></div>
-        <span class="recording-text">RECORDING</span>
-        <span class="timer-display" id="timerDisplay">0:00</span>
-    </div>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="nav-logo">Resonance</a>
+        <div class="nav-links">
+            <a href="pages/voice.html">Try It</a>
+            <a href="pages/organizations.html">For Organizations</a>
+            <a href="pages/admin.html">Admin</a>
+        </div>
+    </nav>
     
-    <!-- Encouragement Messages -->
-    <div class="encouragement" id="encouragement"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Every Voice<br>Matters</h1>
+        <p class="subtitle">A simple platform for capturing authentic community feedback through voice</p>
+        <div class="hero-buttons">
+            <a href="voice.html" class="btn-primary">Share Your Voice →</a>
+            <a href="organizations.html" class="btn-secondary">Get Your Own Portal</a>
+        </div>
+    </section>
     
-    <div class="header">
-        <h1>Resonance</h1>
-        <p class="tagline">Every Voice Matters. Every Perspective Counts.</p>
-    </div>
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Tap to Speak</h3>
+                <p>Click the vintage microphone icon to start recording. No app download or login required.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Share Your Vision</h3>
+                <p>Speak freely about your community's future. What would make it better? What needs to change?</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Build Together</h3>
+                <p>Your voice joins others to create a collective vision for community development and growth.</p>
+            </div>
+        </div>
+    </section>
     
-    <div class="context" id="contextBox">
-        <h2>Community Development Forum</h2>
-        <p>
-            <span class="highlight-phrase">Reimagine our community's future.</span> 
-            Share your vision for <span class="highlight-topic">economic growth</span>, 
-            <span class="highlight-topic">repurposing existing spaces</span>, 
-            <span class="highlight-topic">projects needing momentum</span>, and 
-            <span class="highlight-topic">quality of life improvements</span>.
-        </p>
-        <p class="reimagine-prompt">
-            If you could reimagine our community: What would thrive? 
-            What businesses would flourish? What events would bring us together? 
-            Paint us your vision.
-        </p>
-        <p class="report-link-container">
-            <a href="community-vision-report.html" target="_blank" class="example-report-link">
-                View Example Community Vision Report →
+    <!-- For Organizations -->
+    <section class="for-orgs">
+        <div class="for-orgs-content">
+            <div class="for-orgs-text">
+                <h2>For Organizations</h2>
+                <p>Create your own branded voice collection portal in 30 seconds. Perfect for cities, nonprofits, community groups, and businesses seeking authentic feedback.</p>
+                <a href="organizations.html" class="btn-primary">Learn More →</a>
+            </div>
+            <div class="org-benefits">
+                <h3>What You Get</h3>
+                <ul>
+                    <li>✓ Custom branded portal with your organization name</li>
+                    <li>✓ Unique URL to share with your community</li>
+                    <li>✓ Organized voice recordings by project</li>
+                    <li>✓ Anonymous participation for honest feedback</li>
+                    <li>✓ Mobile-friendly design that works everywhere</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Examples -->
+    <section class="examples">
+        <h2>See It In Action</h2>
+        <div class="example-cards">
+            <a href="voice.html?org=downtown-alliance&name=Downtown%20Business%20Alliance" class="example-card">
+                <h3>Downtown Business Alliance</h3>
+                <p>Gathering input on revitalizing the downtown corridor</p>
             </a>
-        </p>
-    </div>
+            <a href="voice.html?org=youth-council&name=Youth%20Advisory%20Council" class="example-card">
+                <h3>Youth Advisory Council</h3>
+                <p>Capturing young voices for community planning</p>
+            </a>
+            <a href="voice.html?org=parks-dept&name=Parks%20and%20Recreation" class="example-card">
+                <h3>Parks & Recreation</h3>
+                <p>Community input on park improvements and programs</p>
+            </a>
+        </div>
+    </section>
     
-    <p class="instruction">Step up to the microphone and press to begin</p>
-    
-    <!-- Microphone Button -->
-    <div class="mic-container">
-        <button class="mic-button" id="micButton" aria-label="Press to record">
-            <img src="images/sketch-mic.png" alt="Vintage Microphone" class="mic-image" />
-        </button>
-    </div>
-    
-    <div class="status" id="status"></div>
-    
-    <!-- JavaScript Module -->
-    <script type="module" src="app.js"></script>
+    <!-- Footer CTA -->
+    <footer>
+        <h2>Ready to Give Your Community a Voice?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Start collecting authentic feedback today</p>
+        <a href="pages/voice.html" class="btn-primary">Try It Now →</a>
+        
+        <div class="footer-links">
+            <a href="pages/voice.html">Record</a>
+            <a href="pages/organizations.html">For Organizations</a>
+            <a href="pages/create.html">Create Portal</a>
+            <a href="pages/admin.html">Admin</a>
+            <a href="pages/report-example.html">Example Report</a>
+        </div>
+    </footer>
 </body>
 </html>

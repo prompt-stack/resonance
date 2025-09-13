@@ -2,6 +2,21 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
 import { getStorage, ref, uploadBytes, listAll } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
 
+// Get organization from URL parameter (e.g., ?org=lincoln-heights)
+const urlParams = new URLSearchParams(window.location.search);
+const orgId = urlParams.get('org') || 'general';
+const orgName = urlParams.get('name') || 'Community Development Forum';
+
+// Update page title and header with org name
+if (orgId !== 'general') {
+    document.title = `${orgName} - Voice Platform`;
+    const contextBox = document.getElementById('contextBox');
+    if (contextBox) {
+        const h2 = contextBox.querySelector('h2');
+        if (h2) h2.textContent = orgName;
+    }
+}
+
 // Firebase configuration for Resonance
 const firebaseConfig = {
     apiKey: "AIzaSyB-sqaJWG9R5i8eu4HUN43Yn95HgnX4CGE",
@@ -160,21 +175,23 @@ function showEncouragement() {
 async function uploadToFirebase(audioBlob) {
     try {
         const timestamp = Date.now();
-        const fileName = `recordings/voice_${timestamp}.webm`;
+        // Organize recordings by organization
+        const fileName = `recordings/${orgId}/voice_${timestamp}.webm`;
         const storageRef = ref(storage, fileName);
         
         const snapshot = await uploadBytes(storageRef, audioBlob);
         console.log('Uploaded to Firebase:', snapshot.metadata.fullPath);
         
-        // Count total recordings
-        const listRef = ref(storage, 'recordings');
+        // Count recordings for this organization
+        const listRef = ref(storage, `recordings/${orgId}`);
         const result = await listAll(listRef);
         const voiceCount = result.items.length;
         console.log(`Total voices collected: ${voiceCount}`);
         
-        // Show detailed thank you message
+        // Show detailed thank you message with close button
         status.innerHTML = `
             <div class="thank-you-message">
+                <button class="close-button" onclick="this.parentElement.parentElement.classList.remove('active'); this.parentElement.parentElement.innerHTML = '';">×</button>
                 <h3>✓ Thank You for Contributing!</h3>
                 <p>Your voice has been added to the community repository.</p>
                 <p class="next-steps">
@@ -191,10 +208,15 @@ async function uploadToFirebase(audioBlob) {
         status.classList.add('active');
         timerDisplay.textContent = '0:00';
         
+        // Keep message visible for 30 seconds unless manually closed
         setTimeout(() => {
-            status.textContent = '';
-            status.classList.remove('active');
-        }, 10000); // Show longer for reading
+            if (status.classList.contains('active')) {
+                status.classList.remove('active');
+                setTimeout(() => {
+                    status.innerHTML = '';
+                }, 500); // Wait for fade animation
+            }
+        }, 30000); // Show for 30 seconds
         
     } catch (err) {
         console.error('Upload error:', err);

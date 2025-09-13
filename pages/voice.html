@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resonance - Community Voice Platform. Share your perspective on our community's future.">
+    <title>Resonance - Community Voice Platform</title>
+    <link rel="stylesheet" href="../css/main.css?v=2">
+    <link rel="stylesheet" href="../css/mobile.css?v=2">
+</head>
+<body>
+    <!-- Recording Studio Indicator -->
+    <div class="recording-indicator" id="recordingIndicator">
+        <div class="recording-dot"></div>
+        <span class="recording-text">RECORDING</span>
+        <span class="timer-display" id="timerDisplay">0:00</span>
+    </div>
+    
+    <!-- Encouragement Messages -->
+    <div class="encouragement" id="encouragement"></div>
+    
+    
+    <div class="context" id="contextBox">
+        <h2>Community Development Forum</h2>
+        <p>
+            <span class="highlight-phrase">Reimagine our community's future.</span> 
+            Share your vision for <span class="highlight-topic">economic growth</span>, 
+            <span class="highlight-topic">repurposing existing spaces</span>, 
+            <span class="highlight-topic">projects needing momentum</span>, and 
+            <span class="highlight-topic">quality of life improvements</span>.
+        </p>
+        <p class="reimagine-prompt">
+            If you could reimagine our community: What would thrive? 
+            What businesses would flourish? What events would bring us together? 
+            Paint us your vision.
+        </p>
+        <p class="report-link-container">
+            <a href="report-example.html" target="_blank" class="example-report-link">
+                View Example Community Vision Report →
+            </a>
+        </p>
+    </div>
+    
+    <p class="instruction">Step up to the microphone and press to begin</p>
+    
+    <!-- Microphone Button -->
+    <div class="mic-container">
+        <button class="mic-button" id="micButton" aria-label="Press to record">
+            <img src="../images/sketch-mic.png" alt="Vintage Microphone" class="mic-image" />
+        </button>
+    </div>
+    
+    <div class="status" id="status"></div>
+    
+    <!-- JavaScript Module -->
+    <script type="module" src="../js/app.js?v=2"></script>
+    <!-- Organization prompt - only show on general page -->
+    <div id="orgPrompt" style="position: fixed; bottom: 20px; right: 20px; background: #1A1A1A; color: #F5F5F0; padding: 12px 18px; border-radius: 0; font-family: 'Courier Prime', monospace; font-size: 0.85rem; box-shadow: 3px 3px 0 rgba(0,0,0,0.2); display: none; z-index: 50; max-width: 280px;">
+        <button onclick="this.parentElement.style.display='none'" style="position: absolute; top: 5px; right: 8px; background: none; border: none; color: #F5F5F0; font-size: 1.2rem; cursor: pointer; padding: 0;">&times;</button>
+        <div style="margin-right: 20px;">
+            <strong style="text-transform: uppercase; letter-spacing: 0.05em;">For Organizations:</strong><br>
+            <span style="opacity: 0.9;">Get your own community voice portal</span><br>
+            <a href="organizations.html" style="color: #F5F5F0; text-decoration: underline; font-weight: 700; display: inline-block; margin-top: 8px;">Learn More →</a>
+        </div>
+    </div>
+    
+    <script>
+        // Show org prompt only on general page after 5 seconds
+        const urlParams = new URLSearchParams(window.location.search);
+        if (!urlParams.get('org')) {
+            setTimeout(() => {
+                const prompt = document.getElementById('orgPrompt');
+                if (prompt && !localStorage.getItem('hideOrgPrompt')) {
+                    prompt.style.display = 'block';
+                }
+            }, 5000);
+        }
+        
+        // Hide permanently option
+        function hideOrgPrompt() {
+            document.getElementById('orgPrompt').style.display = 'none';
+            localStorage.setItem('hideOrgPrompt', 'true');
+        }
+    </script>
+</body>
+</html>

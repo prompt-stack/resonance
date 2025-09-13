@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Resonance for Your Community</title>
+    <meta name="description" content="Create a voice collection portal for your organization. Gather authentic community feedback in minutes.">
+    <link rel="stylesheet" href="../css/main.css?v=2">
+    <style>
+        body {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            overflow-y: auto; /* Enable vertical scrolling */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border: 3px solid #1A1A1A;
+            margin-bottom: 40px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+        
+        .hero h1 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #4A4A4A;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #1A1A1A;
+            color: #F5F5F0;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: transform 0.2s;
+            border: 3px solid #1A1A1A;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 0 #1A1A1A;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .benefit-card {
+            background: white;
+            border: 2px solid #1A1A1A;
+            padding: 25px;
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .benefit-card p {
+            line-height: 1.5;
+            color: #4A4A4A;
+        }
+        
+        .how-it-works {
+            background: white;
+            border: 3px solid #1A1A1A;
+            padding: 40px;
+            margin: 50px 0;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.1);
+        }
+        
+        .how-it-works h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        
+        .steps {
+            counter-reset: step-counter;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+            counter-increment: step-counter;
+        }
+        
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #1A1A1A;
+            color: #F5F5F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .step p {
+            color: #4A4A4A;
+            line-height: 1.5;
+        }
+        
+        .example-section {
+            text-align: center;
+            padding: 40px 20px;
+            margin: 50px 0;
+        }
+        
+        .example-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .example-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .example-link {
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #1A1A1A;
+            color: #1A1A1A;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .example-link:hover {
+            background: #1A1A1A;
+            color: white;
+        }
+        
+        .footer-cta {
+            text-align: center;
+            padding: 60px 20px;
+            background: #1A1A1A;
+            color: #F5F5F0;
+            margin: 50px -20px -40px -20px;
+        }
+        
+        .footer-cta h2 {
+            font-family: 'Bebas Neue', 'Impact', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.1em;
+        }
+        
+        .footer-cta .cta-button {
+            background: #F5F5F0;
+            color: #1A1A1A;
+        }
+        
+        .footer-cta .cta-button:hover {
+            box-shadow: 0 5px 0 #F5F5F0;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Give Your Community a Voice</h1>
+        <p>Create a custom voice collection portal for your organization in 30 seconds. No login required. No app to download. Just tap and talk.</p>
+        <a href="create.html" class="cta-button">Create Your Portal →</a>
+    </div>
+    
+    <div class="benefits">
+        <div class="benefit-card">
+            <h3>▸ Ultra Simple</h3>
+            <p>One-tap recording. No barriers. Community members just press the microphone and share their thoughts.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>◆ Real Insights</h3>
+            <p>Voice recordings capture emotion and nuance that surveys miss. Hear what your community really thinks.</p>
+        </div>
+        <div class="benefit-card">
+            <h3>■ Anonymous & Safe</h3>
+            <p>No personal data collected. Participants feel safe sharing honest feedback about their community.</p>
+        </div>
+    </div>
+    
+    <div class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <h4>[→] Enter Your Organization Name</h4>
+                <p>Just type your organization or project name. We'll create a custom portal instantly.</p>
+            </div>
+            <div class="step">
+                <h4>[#] Get Your Unique Link</h4>
+                <p>Receive a custom URL like resonance-voice.web.app/?org=your-organization</p>
+            </div>
+            <div class="step">
+                <h4>[@] Share with Your Community</h4>
+                <p>Send via email, social media, QR codes, or flyers. Works on any device.</p>
+            </div>
+            <div class="step">
+                <h4>[*] Collect Authentic Voices</h4>
+                <p>Community members tap the microphone and share. Recordings are organized by your organization.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="example-section">
+        <h3>See It In Action</h3>
+        <p>Try these example community portals:</p>
+        <div class="example-links">
+            <a href="voice.html?org=downtown-alliance&name=Downtown%20Business%20Alliance" class="example-link" target="_blank">
+                Downtown Business Alliance
+            </a>
+            <a href="voice.html?org=youth-council&name=Youth%20Advisory%20Council" class="example-link" target="_blank">
+                Youth Advisory Council
+            </a>
+            <a href="voice.html?org=parks-dept&name=Parks%20and%20Recreation" class="example-link" target="_blank">
+                Parks & Recreation
+            </a>
+        </div>
+    </div>
+    
+    <div class="footer-cta">
+        <h2>Ready to Hear Your Community?</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">Set up takes less than a minute. Free to try.</p>
+        <a href="create.html" class="cta-button">Create Your Portal Now →</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Organization Link - Resonance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Courier Prime', monospace;
+            background: #F5F5F0;
+            padding: 40px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1A1A1A;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #1A1A1A;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            border: 2px solid #1A1A1A;
+            background: white;
+        }
+        
+        button {
+            background: #1A1A1A;
+            color: #F5F5F0;
+            border: none;
+            padding: 12px 30px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        
+        button:hover {
+            background: #333;
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border: 2px solid #1A1A1A;
+            display: none;
+        }
+        
+        .result.show {
+            display: block;
+        }
+        
+        .link-display {
+            background: #F5F5F0;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid #1A1A1A;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            background: white;
+            color: #1A1A1A;
+            border: 2px solid #1A1A1A;
+            padding: 8px 20px;
+            margin-top: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: #1A1A1A;
+            color: white;
+        }
+        
+        .examples {
+            margin-top: 40px;
+            padding: 20px;
+            background: white;
+            border: 2px solid #1A1A1A;
+        }
+        
+        .examples h3 {
+            margin-top: 0;
+        }
+        
+        .example-link {
+            display: block;
+            margin: 10px 0;
+            color: #1A1A1A;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create Custom Organization Link</h1>
+    
+    <div class="form-group">
+        <label for="orgName">Organization Name:</label>
+        <input type="text" id="orgName" placeholder="e.g., Lincoln Heights Community Development" oninput="updateOrgId()" />
+    </div>
+    
+    <div class="form-group">
+        <label for="orgId">Organization ID (auto-generated):</label>
+        <input type="text" id="orgId" placeholder="Will be generated from name" readonly style="background: #f0f0f0; color: #666;" />
+    </div>
+    
+    <button onclick="generateLink()">Generate Link</button>
+    
+    <div id="result" class="result">
+        <h3>Your Custom Link:</h3>
+        <div id="linkDisplay" class="link-display"></div>
+        <button class="copy-btn" onclick="copyLink()">Copy Link</button>
+        <p style="margin-top: 20px; font-size: 0.9rem;">
+            <strong>Note:</strong> Voice recordings will be stored in a separate folder for this organization.
+        </p>
+    </div>
+    
+    <div class="examples">
+        <h3>Example Links:</h3>
+        <a href="?org=lincoln-heights&name=Lincoln Heights Community Development" class="example-link" target="_blank">
+            Lincoln Heights Community Development
+        </a>
+        <a href="?org=downtown-alliance&name=Downtown Business Alliance" class="example-link" target="_blank">
+            Downtown Business Alliance
+        </a>
+        <a href="?org=youth-council&name=Youth Advisory Council" class="example-link" target="_blank">
+            Youth Advisory Council
+        </a>
+        <a href="voice.html" class="example-link" target="_blank">
+            General Community Forum (default)
+        </a>
+    </div>
+    
+    <script>
+        function updateOrgId() {
+            const orgName = document.getElementById('orgName').value.trim();
+            const orgId = orgName.toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '') // Remove special characters
+                .replace(/\s+/g, '-') // Replace spaces with hyphens
+                .replace(/-+/g, '-') // Replace multiple hyphens with single
+                .substring(0, 50); // Limit length
+            document.getElementById('orgId').value = orgId;
+        }
+        
+        function generateLink() {
+            const orgName = document.getElementById('orgName').value.trim();
+            const orgId = document.getElementById('orgId').value.trim();
+            
+            if (!orgName) {
+                alert('Please enter an organization name');
+                return;
+            }
+            
+            // Store org info in localStorage for admin view
+            const orgs = JSON.parse(localStorage.getItem('resonance-orgs') || '{}');
+            orgs[orgId] = {
+                name: orgName,
+                created: new Date().toISOString(),
+                lastUsed: null
+            };
+            localStorage.setItem('resonance-orgs', JSON.stringify(orgs));
+            
+            const baseUrl = window.location.origin + window.location.pathname.replace('create.html', 'voice.html');
+            const customLink = `${baseUrl}?org=${encodeURIComponent(orgId)}&name=${encodeURIComponent(orgName)}`;
+            
+            document.getElementById('linkDisplay').textContent = customLink;
+            document.getElementById('result').classList.add('show');
+        }
+        
+        function copyLink() {
+            const linkText = document.getElementById('linkDisplay').textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

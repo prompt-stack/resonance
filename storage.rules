@@ -1,0 +1,30 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Recordings folder rules - now with organization support
+    match /recordings/{organization}/{recording} {
+      // Allow anyone to upload (write) recordings - this is the public input
+      allow write: if request.resource.size < 50 * 1024 * 1024  // Max 50MB
+                   && request.resource.contentType.matches('audio/.*');
+      
+      // Allow listing for counting (but not reading file contents)
+      allow list: if true;
+      
+      // No read access for individual recordings (keeps them private)
+      allow read: if false;
+    }
+    
+    // Also support the old structure for backward compatibility
+    match /recordings/{recording} {
+      allow write: if request.resource.size < 50 * 1024 * 1024
+                   && request.resource.contentType.matches('audio/.*');
+      allow list: if true;
+      allow read: if false;
+    }
+    
+    // Deny all other access by default
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
